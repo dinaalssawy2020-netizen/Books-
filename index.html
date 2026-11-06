@@ -1,104 +1,132 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Best Books - Dina El Sawy</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma}
-body{background:#000;color:#fff;overflow-x:hidden;padding-bottom:20px}
-header{padding:22px 20px 10px;display:flex;justify-content:space-between;align-items:center}
-header h1{font-size:32px;letter-spacing:1px}
-header h1 span{color:#D4AF37;text-shadow:0 0 20px #D4AF37,0 0 40px #FFD700}
-header p{color:#C9A86A;font-size:13px}
-.badge{background:#1A1200;border:1px solid #D4AF37;color:#FFD700;padding:6px 12px;border-radius:20px;font-size:12px;box-shadow:0 0 14px rgba(212,175,55,.4)}
-.section{margin-top:22px}
-.section h2{padding:0 20px;font-size:21px;margin-bottom:12px}
-.section h2 span{color:#FFD700;text-shadow:0 0 12px #D4AF37}
-.shelf-wrap{position:relative;padding:0 16px}
-.shelf{display:flex;gap:14px;overflow-x:auto;padding:16px 4px 24px;scrollbar-width:none}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial}
+body{background:#FFFBF2;color:#1A1A1A;overflow-x:hidden}
+.top{padding:22px 18px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.top h1{font-size:28px;font-weight:900;line-height:1}
+.top p{font-size:12px;color:#9A8B6F;margin-top:4px}
+.bag{width:40px;height:40px;background:#fff;border:1px solid #EDE3CE;border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.bag b{position:absolute;top:-6px;right:-6px;background:#1F4D3A;color:#fff;font-size:10px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.search{margin:14px 18px;background:#fff;border:1px solid #EDE3CE;padding:13px 14px;border-radius:14px;color:#B0A284;font-size:13px;display:flex;gap:8px}
+.pills{display:flex;gap:8px;padding:0 18px;overflow-x:auto;scrollbar-width:none}
+.pills::-webkit-scrollbar{display:none}
+.pills button{white-space:nowrap;padding:8px 14px;border-radius:20px;border:1px solid #EDE3CE;background:#fff;font-weight:700;font-size:12px}
+.pills button.on{background:#1A1A1A;color:#fff;border-color:#1A1A1A}
+.head{padding:18px 18px 0;display:flex;justify-content:space-between;align-items:center}
+.head h2{font-size:17px}
+.head span{font-size:11px;color:#A99B7F}
+.stage{position:relative;padding:0 18px;margin-top:2px}
+.hand-real{text-align:center;position:relative;z-index:10;animation:handReal 1.6s ease-in-out infinite;pointer-events:none;line-height:0}
+.hand-real svg{filter:drop-shadow(0 8px 8px rgba(0,0,0,.2))}
+.hand-shadow{width:60px;height:10px;background:rgba(0,0,0,.15);border-radius:50%;margin:2px auto 0;filter:blur(3px)}
+@keyframes handReal{0%,100%{transform:translateY(-6px)}50%{transform:translateY(14px)}}
+.shelf{display:flex;gap:10px;padding:6px 2px 0;overflow-x:auto;scrollbar-width:none;position:relative;z-index:2}
 .shelf::-webkit-scrollbar{display:none}
-.book{flex:0 0 140px;height:200px;border-radius:10px 4px 4px 10px;cursor:grab;color:#fff;padding:12px;position:relative;display:flex;flex-direction:column;justify-content:space-between;transition:transform .15s;touch-action:none;border:1px solid #D4AF37;box-shadow:0 0 18px rgba(212,175,55,.25), 6px 8px 0 rgba(0,0,0,.6);background:linear-gradient(135deg,#111,#000)}
-.book small{color:#FFD700;font-size:11px;line-height:1.4}
-.book b{font-size:15px;line-height:1.3}
-.book .price{background:linear-gradient(#FFD700,#D4AF37);color:#000;padding:4px 10px;border-radius:20px;font-size:12px;align-self:flex-start;font-weight:900;box-shadow:0 0 14px #FFD700}
-.wood{height:14px;background:linear-gradient(#2A1F00,#0A0800);border:1px solid #D4AF37;border-radius:6px;box-shadow:0 0 16px rgba(212,175,55,.4);margin:-6px 8px 0}
-.hand{font-size:38px;text-align:center;margin-top:8px;filter:drop-shadow(0 0 10px #FFD700);animation:hand 1.4s infinite}
-@keyframes hand{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(10px) scale(1.1)}}
-.detail{position:fixed;left:12px;right:12px;bottom:12px;background:#0A0800;border:1px solid #D4AF37;border-radius:22px;padding:18px;box-shadow:0 0 30px rgba(212,175,55,.4);transform:translateY(120%);transition:.35s;z-index:10}
-.detail.show{transform:translateY(0)}
-.detail h3{font-size:22px;color:#FFD700}
-.detail p{color:#E8D9A8;font-size:13px;line-height:1.6;margin:8px 0}
-.opts{display:flex;gap:8px;margin:10px 0}
-.opts button{flex:1;padding:10px;border:1px solid #D4AF37;border-radius:12px;background:#000;color:#fff;font-weight:700}
-.opts button.active{background:linear-gradient(#FFD700,#D4AF37);color:#000;box-shadow:0 0 16px #FFD700}
-.add{width:100%;padding:14px;background:linear-gradient(#FFD700,#D4AF37);color:#000;border:none;border-radius:14px;font-size:16px;font-weight:900;box-shadow:0 0 20px rgba(255,215,0,.5)}
-.close{position:absolute;left:14px;top:12px;border:1px solid #D4AF37;background:#000;color:#FFD700;width:30px;height:30px;border-radius:50%}
-.bag{position:fixed;bottom:16px;left:16px;background:linear-gradient(#FFD700,#D4AF37);color:#000;padding:10px 16px;border-radius:20px;z-index:20;font-size:13px;font-weight:900;box-shadow:0 0 18px #FFD700}
-.footer{text-align:center;padding:30px 20px 20px;margin-top:20px;border-top:1px solid rgba(212,175,55,.4)}
-.signature{font-size:38px;font-family:'Brush Script MT',cursive;color:#FFD700;text-shadow:0 0 22px #D4AF37;transform:rotate(-3deg)}
-.footer p{color:#C9A86A;font-size:12px;margin-top:8px}
-.footer small{color:#8A7A55;font-size:11px}
+.book{flex:0 0 108px;height:152px;border-radius:3px 8px 8px 3px;padding:10px 8px;display:flex;flex-direction:column;justify-content:space-between;cursor:grab;touch-action:none;box-shadow:5px 6px 14px rgba(0,0,0,.18);position:relative;user-select:none}
+.book small{font-size:8px;letter-spacing:.5px;opacity:.85}
+.book b{font-size:12.5px;line-height:1.25}
+.book .foot{display:flex;justify-content:space-between;align-items:end}
+.book .auth{font-size:9px;opacity:.9;line-height:1.2}
+.book .ico{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.b1{background:#2B4A6E;color:#fff} .b2{background:#F2E5C3;color:#3A2A10} .b3{background:#7A4630;color:#fff} .b4{background:#A63B3B;color:#fff}
+.wood{height:13px;background:linear-gradient(#D2AC7E,#B98A5E,#8A5A2E);border-radius:2px;box-shadow:0 5px 10px rgba(0,0,0,.18);margin-top:-1px}
+.detail{padding:16px 18px 0}
+.detailTop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.detailTop h3{font-size:21px;line-height:1.2}
+.detailTop p{font-size:12px;color:#9A8B6F;margin-top:4px}
+.price{font-size:19px;font-weight:900;white-space:nowrap}
+.toggle{display:flex;gap:8px;margin:14px 0}
+.toggle button{flex:1;padding:12px;border-radius:12px;border:1px solid #EDE3CE;background:#fff;font-weight:800;font-size:13px}
+.toggle button.on{background:#1A1A1A;color:#fff}
+.lbl{font-size:12px;color:#9A8B6F;margin:6px 0 8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{padding:7px 12px;border-radius:20px;border:1px solid #EDE3CE;background:#fff;font-size:12px}
+.chips button.on{background:#1A1A1A;color:#fff}
+.add{width:100%;margin-top:14px;padding:15px;background:#1E4D3A;color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:800}
+.add.done{background:#2E7D5B}
+.best{padding:20px 18px 0}
+.best h2{font-size:17px;margin-bottom:12px}
+.row{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:10px}
+.row::-webkit-scrollbar{display:none}
+.card{flex:0 0 132px;background:#fff;border:1px solid #EDE3CE;border-radius:14px;padding:10px}
+.card .cover{height:108px;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-size:12px;font-weight:800;line-height:1.3}
+.card b{font-size:13px;display:block;margin-top:8px;line-height:1.3}
+.card small{font-size:11px;color:#9A8B6F}
+.footer{text-align:center;padding:28px 18px 20px}
+.sign{font-size:46px;font-family:'Brush Script MT',cursive;color:#1E4D3A;transform:rotate(-3deg);line-height:1}
+.footer p{font-size:12px;color:#9A8B6F;margin-top:6px}
 </style>
 </head>
 <body>
-<div class="bag">🛍️ الحقيبة: <span id="count">0</span></div>
-<header><div><h1>Best <span>Books</span></h1><p>مكتبة الوعي والنمو</p></div><div class="badge">نسخة فاخرة</div></header>
+<div class="top"><div><h1>Best Books</h1><p>مكتبة الوعي والنمو</p></div><div class="bag">🛍️<b id="bagCount">0</b></div></div>
+<div class="search">🔍 &nbsp; Search - كتب، سمية الناصر، سناء زيادة...</div>
+<div class="pills"><button class="on">All Books</button><button>سمية الناصر</button><button>سناء زيادة</button><button>وعي</button><button>تنمية</button></div>
 
-<div class="section"><h2>✨ <span>سمية الناصر</span></h2>
-<div class="shelf-wrap"><div class="shelf" id="shelf1"></div><div class="wood"></div><div class="hand">👆 اسحبي الكتاب لتحت</div></div></div>
+<div class="head"><h2>New on the ledge</h2><span>Pull down to refresh</span></div>
+<div class="stage">
+<div class="hand-real">
+  <svg viewBox="0 0 120 140" width="90" height="105">
+    <path d="M35 0 L85 0 L85 28 L35 28 Z" fill="#1E4D3A"/>
+    <path d="M38 28 C38 20 82 20 82 28 L82 70 C82 88 70 102 60 102 C50 102 38 88 38 70 Z" fill="#F2C69B"/>
+    <path d="M52 102 C52 118 54 128 60 132 C66 128 68 118 68 102 L68 88 L52 88 Z" fill="#F2C69B"/>
+    <path d="M55 118 C55 126 57 130 60 130 C63 130 65 126 65 118 L65 112 L55 112 Z" fill="#FFD9C0"/>
+    <path d="M38 45 C30 45 28 55 32 62 C36 68 42 66 44 58 Z" fill="#E8B48A"/>
+    <path d="M82 45 C90 45 92 55 88 62 C84 68 78 66 76 58 Z" fill="#E8B48A"/>
+    <path d="M40 70 C32 70 30 80 34 86 C38 92 44 90 46 82 Z" fill="#E8B48A"/>
+    <path d="M45 70 Q60 78 75 70" stroke="#D9A67E" stroke-width="1.5" fill="none"/>
+  </svg>
+  <div class="hand-shadow"></div>
+</div>
+<div class="shelf" id="shelf"></div><div class="wood"></div></div>
 
-<div class="section"><h2>🔥 <span>الدكتورة سناء زيادة</span></h2>
-<div class="shelf-wrap"><div class="shelf" id="shelf2"></div><div class="wood"></div></div></div>
-
-<div class="detail" id="detail">
-<button class="close" onclick="hide()">✕</button>
-<h3 id="dTitle"></h3><p id="dAuthor"></p><p id="dDesc"></p>
-<div class="opts"><button class="active" onclick="setType(this,280)">Paperback - 280 ج</button><button onclick="setType(this,420)">Hardcover - 420 ج</button></div>
-<button class="add" onclick="addBag()">Add to bag - <span id="dPrice">280</span> ج</button>
+<div class="detail">
+<div class="detailTop"><div><h3 id="t">حدثني فقال</h3><p id="a">By سمية الناصر - 312 pages</p></div><div class="price" id="p">E£ 280</div></div>
+<div class="toggle"><button class="on" id="bP" onclick="setType('paper')">Paperback</button><button id="bH" onclick="setType('hard')">Hardcover</button></div>
+<div class="lbl">Add animation</div>
+<div class="chips"><button class="on" onclick="chip(this)">✦ 3D Flight</button><button onclick="chip(this)">📦 Cardboard Box</button><button onclick="chip(this)">Shelf Reveal</button><button onclick="chip(this)">🎀 Ribbon Snap</button></div>
+<button class="add" id="addBtn" onclick="addBag()">Add to bag - E£ <span id="ap">280</span></button>
 </div>
 
-<div class="footer">
-<div class="signature">dinaalssawy ✍️</div>
-<p>Best Books © 2026 created by dinaalssawy allrightsreserved</p>
-<small>مكتبة الوعي والنمو | سناء زيادة - سمية الناصر</small>
-</div>
+<div class="best"><h2>Best Sellers - الأكثر مبيعاً</h2><div class="row" id="row"></div></div>
+<div class="footer"><div class="sign">dinaalssawy ✍️</div><p>Best Books © 2026 all rightsreserved created by dinaalssawy</p></div>
 
 <script>
-const books1=[
-{t:"حدثني فقال",a:"سمية الناصر",d:"الكتاب اللي كسر الدنيا. رسائل وعي بتغير طريقة تفكيرك.",p:280},
-{t:"كيف تتقن لعبة الحياة",a:"سمية الناصر",d:"369 مشكلة حياتية وحلها. هتفهم لعبة الحياة وتلعبها صح.",p:320},
-{t:"حدثني فقال 2",a:"سمية الناصر",d:"الجزء الثاني. تكملة الرحلة، وعي أعمق.",p:300},
-{t:"ماذا فعلت؟",a:"سمية الناصر",d:"مجموعة مقالات من حكمة عالمية.",p:250},
-{t:"السلام الداخلي",a:"سمية الناصر",d:"ازاي توصل لسلام حقيقي جواك.",p:270},
-{t:"لا تقلق",a:"سمية الناصر",d:"90 سر يجعلك تعيش مطمئناً.",p:260},
+const books=[
+{t:"حدثني فقال",a:"سمية الناصر",p:280,c:"b1",i:"🌙"},
+{t:"كيف تتقن لعبة الحياة",a:"سمية الناصر",p:320,c:"b2",i:"♦️"},
+{t:"حدثني فقال 2",a:"سمية الناصر",p:300,c:"b3",i:"✦"},
+{t:"الشفرة الكاملة للثروة",a:"د. سناء زيادة",p:450,c:"b4",i:"△"},
 ];
-const books2=[
-{t:"الشفرة الكاملة لصناعة الثروة",a:"د. سناء زيادة",d:"برنامج عملي لصناعة الثروة من الصفر.",p:450},
-{t:"صناعة الواقع",a:"د. سناء زيادة",d:"ازاي تصنع واقعك بنفسك.",p:400},
-{t:"بناء الفكر الريادي",a:"د. سناء زيادة",d:"لأي حد عايز يبدأ مشروعه.",p:380},
-{t:"تطوير الوعي",a:"د. سناء زيادة",d:"رحلة تطوير الوعي والذات.",p:350},
-];
-let bag=0;
-function render(list,elId){
-  const el=document.getElementById(elId);
-  list.forEach(b=>{
-    const d=document.createElement('div');
-    d.className='book';
-    d.innerHTML=`<small>${b.a}</small><b>${b.t}</b><span class="price">${b.p} ج</span>`;
-    let startY=0, dragging=false;
-    d.addEventListener('pointerdown',e=>{startY=e.clientY; dragging=true; d.style.zIndex=5;});
-    d.addEventListener('pointermove',e=>{if(!dragging) return; let dy=e.clientY-startY; if(dy>0 && dy<120){ d.style.transform=`translateY(${dy}px) rotate(${dy/6}deg) scale(${1+dy/500})`; d.style.boxShadow=`0 0 30px rgba(255,215,0,.6)`; }});
-    d.addEventListener('pointerup',e=>{dragging=false; let dy=e.clientY-startY; d.style.transform=''; d.style.boxShadow=''; d.style.zIndex=''; if(dy>50) openBook(b);});
-    d.addEventListener('click',()=>openBook(b));
-    el.appendChild(d);
-  });
+let cur=books[0], type='paper', bag=0, price=280;
+function render(){
+ const s=document.getElementById('shelf');
+ books.forEach(b=>{
+  const d=document.createElement('div'); d.className='book '+b.c;
+  d.innerHTML=`<small>BEST BOOKS</small><b>${b.t}</b><div class="foot"><span class="auth">${b.a}</span><span class="ico">${b.i}</span></div>`;
+  let sy=0, drag=false;
+  d.addEventListener('pointerdown',e=>{sy=e.clientY; drag=true; d.style.zIndex=20});
+  d.addEventListener('pointermove',e=>{if(!drag)return; let dy=e.clientY-sy; if(dy>0&&dy<140){ d.style.transform=`translateY(${dy}px) rotate(${dy/6}deg) scale(${1+dy/600})`; }});
+  d.addEventListener('pointerup',e=>{drag=false; let dy=e.clientY-sy; d.style.transform=''; d.style.zIndex=''; if(dy>55) select(b);});
+  d.addEventListener('click',()=>select(b));
+  s.appendChild(d);
+ });
+ const r=document.getElementById('row');
+ books.forEach(b=>{
+  const m=document.createElement('div'); m.className='card';
+  m.innerHTML=`<div class="cover ${b.c}">${b.t}</div><b>${b.t}</b><small>${b.a} - E£ ${b.p}</small>`;
+  m.onclick=()=>select(b); r.appendChild(m);
+ });
 }
-function openBook(b){ document.getElementById('dTitle').innerText=b.t; document.getElementById('dAuthor').innerText=b.a; document.getElementById('dDesc').innerText=b.d; document.getElementById('dPrice').innerText=b.p; document.getElementById('detail').classList.add('show'); }
-function hide(){document.getElementById('detail').classList.remove('show')}
-function setType(btn,price){ document.querySelectorAll('.opts button').forEach(x=>x.classList.remove('active')); btn.classList.add('active'); document.getElementById('dPrice').innerText=price; }
-function addBag(){bag++; document.getElementById('count').innerText=bag; alert('تمت الإضافة للحقيبة ✅'); hide();}
-render(books1,'shelf1'); render(books2,'shelf2');
+function select(b){ cur=b; price = type==='paper'? b.p : b.p+140; document.getElementById('t').innerText=b.t; document.getElementById('a').innerText=`By ${b.a} - 312 pages`; document.getElementById('p').innerText=`E£ ${price}`; document.getElementById('ap').innerText=price; const btn=document.getElementById('addBtn'); btn.classList.remove('done'); btn.innerHTML=`Add to bag - E£ ${price}`; }
+function setType(t){ type=t; document.getElementById('bP').classList.toggle('on',t==='paper'); document.getElementById('bH').classList.toggle('on',t==='hard'); select(cur); }
+function chip(btn){ document.querySelectorAll('.chips button').forEach(x=>x.classList.remove('on')); btn.classList.add('on'); }
+function addBag(){ bag++; document.getElementById('bagCount').innerText=bag; const btn=document.getElementById('addBtn'); btn.classList.add('done'); btn.innerText=`✓ In your bag, ${type==='paper'?'paperback':'hardcover'}`; setTimeout(()=>{btn.classList.remove('done'); btn.innerText=`Add to bag - E£ ${price}`},2200); }
+render(); select(books[0]);
 </script>
 </body>
 </html>

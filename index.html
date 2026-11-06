@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Books - Dina El Sawy</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma}
+body{background:#050807;color:#fff;overflow-x:hidden;padding-bottom:20px}
+header{padding:22px 20px 10px;display:flex;justify-content:space-between;align-items:center}
+header h1{font-size:30px;letter-spacing:1px}
+header h1 span{color:#00FF88;text-shadow:0 0 18px #00FF88}
+header p{color:#8AA99A;font-size:13px}
+.badge{background:#0F2A1A;border:1px solid #00FF88;color:#00FF88;padding:6px 12px;border-radius:20px;font-size:12px;box-shadow:0 0 14px rgba(0,255,136,.35)}
+.section{margin-top:20px}
+.section h2{padding:0 20px;font-size:20px;margin-bottom:12px}
+.section h2 span{color:#00FF88}
+.shelf-wrap{position:relative;padding:0 16px}
+.shelf{display:flex;gap:14px;overflow-x:auto;padding:10px 4px 22px;scrollbar-width:none}
+.shelf::-webkit-scrollbar{display:none}
+.book{flex:0 0 135px;height:195px;border-radius:10px 4px 4px 10px;cursor:grab;color:#fff;padding:12px;position:relative;display:flex;flex-direction:column;justify-content:space-between;transition:transform .2s;touch-action:none;border:1px solid rgba(0,255,136,.35);box-shadow:0 0 18px rgba(0,255,136,.18), 6px 8px 0 rgba(0,0,0,.5)}
+.book small{color:#A9FFD1;font-size:11px;line-height:1.4}
+.book b{font-size:15px;line-height:1.3;text-shadow:0 0 10px rgba(0,255,136,.4)}
+.book .price{background:#00FF88;color:#04100A;padding:4px 9px;border-radius:20px;font-size:12px;align-self:flex-start;font-weight:900;box-shadow:0 0 14px #00FF88}
+.wood{height:14px;background:linear-gradient(#1A3A28,#0A1F13);border:1px solid #00FF88;border-radius:6px;box-shadow:0 0 16px rgba(0,255,136,.35);margin:-6px 8px 0}
+.hand{font-size:34px;text-align:center;margin-top:6px;filter:drop-shadow(0 0 8px #00FF88);animation:hand 1.6s infinite}
+@keyframes hand{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.detail{position:fixed;left:12px;right:12px;bottom:12px;background:#0A1510;border:1px solid #00FF88;border-radius:22px;padding:18px;box-shadow:0 0 30px rgba(0,255,136,.35);transform:translateY(120%);transition:.35s;z-index:10}
+.detail.show{transform:translateY(0)}
+.detail h3{font-size:22px;color:#fff}
+.detail p{color:#B9D6C6;font-size:13px;line-height:1.6;margin:8px 0}
+.opts{display:flex;gap:8px;margin:10px 0}
+.opts button{flex:1;padding:10px;border:1px solid #1E4A32;border-radius:12px;background:#050807;color:#fff;font-weight:700}
+.opts button.active{background:#00FF88;color:#04100A;box-shadow:0 0 16px #00FF88}
+.add{width:100%;padding:14px;background:#00FF88;color:#04100A;border:none;border-radius:14px;font-size:16px;font-weight:900;box-shadow:0 0 20px rgba(0,255,136,.5)}
+.close{position:absolute;left:14px;top:12px;border:1px solid #00FF88;background:#050807;color:#00FF88;width:30px;height:30px;border-radius:50%}
+.bag{position:fixed;top:16px;left:16px;background:#00FF88;color:#04100A;padding:8px 14px;border-radius:20px;z-index:20;font-size:13px;font-weight:900;box-shadow:0 0 18px #00FF88}
+.footer{text-align:center;padding:30px 20px 20px;margin-top:20px;border-top:1px solid rgba(0,255,136,.25)}
+.signature{font-size:38px;font-family:'Brush Script MT',cursive;color:#00FF88;text-shadow:0 0 22px #00FF88;transform:rotate(-3deg)}
+.footer p{color:#8AA99A;font-size:12px;margin-top:8px}
+.footer small{color:#5A7A6A;font-size:11px}
+</style>
+</head>
+<body>
+<div class="bag">🛍️ الحقيبة: <span id="count">0</span></div>
+<header><div><h1>Best <span>Books</span></h1><p>مكتبة الوعي والنمو</p></div><div class="badge">نسخة تجريبية</div></header>
+
+<div class="section"><h2>✨ <span>سمية الناصر</span></h2>
+<div class="shelf-wrap"><div class="shelf" id="shelf1"></div><div class="wood"></div><div class="hand">👆 اسحب الكتاب لتحت</div></div></div>
+
+<div class="section"><h2>🔥 <span>الدكتورة سناء زيادة</span></h2>
+<div class="shelf-wrap"><div class="shelf" id="shelf2"></div><div class="wood"></div></div></div>
+
+<div class="detail" id="detail">
+<button class="close" onclick="hide()">✕</button>
+<h3 id="dTitle"></h3><p id="dAuthor"></p><p id="dDesc"></p>
+<div class="opts"><button class="active" onclick="setType(this,280)">Paperback - 280 ج</button><button onclick="setType(this,420)">Hardcover - 420 ج</button></div>
+<button class="add" onclick="addBag()">Add to bag - <span id="dPrice">280</span> ج</button>
+</div>
+
+<div class="footer">
+<div class="signature">dinaalssawy ✍️</div>
+<p>Best Books © 2026 all rightsreserved creatd by dinaalssawy</p>
+<small>مكتبة الوعي والنمو | سناء زيادة - سمية الناصر</small>
+</div>
+
+<script>
+const books1=[
+{t:"حدثني فقال",a:"سمية الناصر",d:"الكتاب اللي كسر الدنيا في السعودية والوطن العربي. رسائل وعي بتغير طريقة تفكيرك.",c:"#07120C",p:280},
+{t:"كيف تتقن لعبة الحياة",a:"سمية الناصر",d:"369 مشكلة حياتية وحلها. هتفهم لعبة الحياة وتلعبها صح.",c:"#0A1F13",p:320},
+{t:"حدثني فقال 2",a:"سمية الناصر",d:"الجزء الثاني. تكملة الرحلة، وعي أعمق.",c:"#07120C",p:300},
+{t:"ماذا فعلت؟",a:"سمية الناصر",d:"مجموعة مقالات من حكمة عالمية.",c:"#0A1F13",p:250},
+{t:"السلام الداخلي",a:"سمية الناصر",d:"ازاي توصل لسلام حقيقي جواك.",c:"#07120C",p:270},
+{t:"لا تقلق",a:"سمية الناصر",d:"90 سر يجعلك تعيش مطمئناً.",c:"#0A1F13",p:260},
+];
+const books2=[
+{t:"الشفرة الكاملة لصناعة الثروة",a:"د. سناء زيادة",d:"برنامج عملي لصناعة الثروة من الصفر.",c:"#07120C",p:450},
+{t:"صناعة الواقع",a:"د. سناء زيادة",d:"ازاي تصنع واقعك بنفسك.",c:"#0A1F13",p:400},
+{t:"بناء الفكر الريادي",a:"د. سناء زيادة",d:"لأي حد عايز يبدأ مشروعه.",c:"#07120C",p:380},
+{t:"تطوير الوعي",a:"د. سناء زيادة",d:"رحلة تطوير الوعي والذات.",c:"#0A1F13",p:350},
+];
+let currentPrice=280, bag=0;
+function render(list,elId){
+  const el=document.getElementById(elId);
+  list.forEach(b=>{
+    const d=document.createElement('div');
+    d.className='book'; d.style.background=b.c;
+    d.innerHTML=`<small>${b.a}</small><b>${b.t}</b><span class="price">${b.p} ج</span>`;
+    let startY=0, dragging=false;
+    d.addEventListener('pointerdown',e=>{startY=e.clientY; dragging=true;});
+    d.addEventListener('pointermove',e=>{if(!dragging) return; let dy=e.clientY-startY; if(dy>0) d.style.transform=`translateY(${Math.min(dy,80)}px) scale(1.03)`;});
+    d.addEventListener('pointerup',e=>{dragging=false; let dy=e.clientY-startY; d.style.transform=''; if(dy>55) openBook(b);});
+    d.addEventListener('click',()=>openBook(b));
+    el.appendChild(d);
+  });
+}
+function openBook(b){ currentPrice=b.p; document.getElementById('dTitle').innerText=b.t; document.getElementById('dAuthor').innerText=b.a; document.getElementById('dDesc').innerText=b.d; document.getElementById('dPrice').innerText=b.p; document.getElementById('detail').classList.add('show'); }
+function hide(){document.getElementById('detail').classList.remove('show')}
+function setType(btn,price){ document.querySelectorAll('.opts button').forEach(x=>x.classList.remove('active')); btn.classList.add('active'); currentPrice=price; document.getElementById('dPrice').innerText=price; }
+function addBag(){bag++; document.getElementById('count').innerText=bag; alert('تمت الإضافة للحقيبة ✅'); hide();}
+render(books1,'shelf1'); render(books2,'shelf2');
+</script>
+</body>
+  </html>
